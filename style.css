@@ -18,18 +18,21 @@
      border: solid 1px black;
      width: 33%;
      height: 100%;
-     color: gold;
-     font-size: 34px;
+     color:  black;
+     font-size:250px;
      text-align: center;
-     
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-family: Arial, Helvetica, sans-serif;
 }
 
 .clickX {
-     background-color: blue;
+     /* background-color: blue; */
 }
 
 .clickO {
-     background-color: red;
+ 
 }
 .used {
 
@@ -37,4 +40,22 @@
 
 .activePlayer {
      border: solid red 2px;
+}
+
+.playerContainer {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 30px;
+}
+
+.buttons {
+     display: flex;
+     gap: 50px;
+     justify-content: center;
+     align-items: center;
+}
+
+.player {
+     padding: 10px;
 }
