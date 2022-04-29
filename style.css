@@ -1,0 +1,40 @@
+.board {
+     border: solid 1px black;
+     height: 800px;
+     width: 800px;
+     margin: 10px auto;
+}
+
+#row1, #row2, #row3 {
+     display: flex;
+     width: 100%;
+     height: 33%;
+     gap: 3px;
+     margin-top: 2px;
+     margin-left: 1px;
+}
+
+.boxes {
+     border: solid 1px black;
+     width: 33%;
+     height: 100%;
+     color: gold;
+     font-size: 34px;
+     text-align: center;
+     
+}
+
+.clickX {
+     background-color: blue;
+}
+
+.clickO {
+     background-color: red;
+}
+.used {
+
+}
+
+.activePlayer {
+     border: solid red 2px;
+}
