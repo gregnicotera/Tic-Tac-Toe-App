@@ -1,39 +1,61 @@
 let board = document.getElementById('bored')
-let playerOne = document.getElementById('playerOne')
-let playerTwo = document.getElementById('playerTwo')
+let playerOne = document.getElementById('playerOne').classList
+let playerTwo = document.getElementById('playerTwo').classList
 let resetBtn = document.getElementById('reset')
-let turnCounter = 0
 let game = ['', '', '', '', '', '','', '', '']
 
-let gameObj = {
-    // puts mark from active player onto the gameboard, after it mark runs gamestate and changes active player if game isnt over
-    placeMark(addClass, id) {
-    turnCounter++ // variable used to keep track of round count in case that feature is implement
-    if(addClass.classList.contains('used')){
-        alert('Block has already been chosen, please choose another')
-    } else if(playerOne.classList.contains('activePlayer')) {
+let playerObj = {
+    activePlayerToggle() { // this changes the active player
+        playerOne.toggle('activePlayer')
+        playerTwo.toggle('activePlayer')
+    },
+    playerXMark(addClass, id) { //Behavior for when Player X is active player
         addClass.classList.add('clickX')
         addClass.classList.add('used')
-        this.activePlayerToggle()
         document.getElementById(id).textContent = 'X'
         game[id] = 'X'
-        this.gameState()    
-    } else {
+    },
+    playerOMark(addClass, id) { // Behavior for when Player O is active player
         addClass.classList.add('clickO')
         addClass.classList.add('used')
-        this.activePlayerToggle()
         document.getElementById(id).textContent = 'O'
         game[id] = 'O'
-        this.gameState()
     }
-},
+}
+
+let gameObj = { 
+    winningConditions : [ // array used in function to decide if there is a winnner
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ],
+
+    
+    placeMark(addClass, id) { // Decides which player is active and behaves accordingly
+        if(addClass.classList.contains('used')){ // lets user know they are trying to click in an already marked box
+            alert('Block has already been chosen, please choose another')
+        } else if(playerOne.contains('activePlayer')) { // Checks active player and acts accordingly
+            playerObj.playerXMark(addClass, id)
+            playerObj.activePlayerToggle()
+            this.gameState()    
+        } else {
+            playerObj.playerOMark(addClass, id)
+            playerObj.activePlayerToggle()
+            this.gameState()
+        }
+    },
     
     gameState() {
         //checks if there is a winner after each player mark
         let roundWon = false;
         let stopTie = 0
        for(let i = 0; i <= 7; i++){
-         const winCondition = winningConditions[i];
+         const winCondition = this.winningConditions[i];
          let a = game[winCondition[0]];
          let b = game[winCondition[1]];
          let c = game[winCondition[2]];
@@ -44,12 +66,11 @@ let gameObj = {
                  roundWon = true;
                  console.log(`Player ${a} wins!`)
                  stopTie++
-                 console.log(stopTie)
                  break
          } 
-    }  roundWon && stopTie < 1 ? console.log('Game Tied') : null // tells user game is tied
-},
-    
+        }  roundWon && stopTie < 1 ? console.log('Game Tied') : null // tells user game is tied
+    },   
+    //resets the gamestate
     resetGame() {
         for(let i = 0; i < 9; i++) {
             document.getElementById(i).textContent = "" // removes marks from boxes
@@ -57,34 +78,15 @@ let gameObj = {
             game[i] = "" // resets array used for CheckWin
             turnCounter = 0 // resets turnCounters            
         }
-        playerOne.classList.contains('activePlayer') ? null : 
-        playerOne.classList.toggle('activePlayer'), playerTwo.classList.remove('activePlayer')
-
-
-    },
-    activePlayerToggle() {
-        playerOne.classList.toggle('activePlayer')
-        playerTwo.classList.toggle('activePlayer')
+        playerOne.contains('activePlayer') ? null : playerObj.activePlayerToggle() // makes PlayerX the active player
     }
 }
 
 
-const winningConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-];
-
-
 board.addEventListener('click', e => {
     if(e.target.classList.contains('boxes')) { //checks to make sure clicked target is a box and not empty space
-    let addClass = document.getElementById(`${e.target.id}`)
-    gameObj.placeMark(addClass, e.target.id)
+    let addClass = document.getElementById(`${e.target.id}`) // grabs id of the clicked box
+    gameObj.placeMark(addClass, e.target.id) // uses clicked box id to run function allowing player to mark
     }
     
 })
