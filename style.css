@@ -16,6 +16,7 @@
      height: 800px;
      width: 800px;
      margin: 10px auto;
+     position: relative;
 }
 
 #row1, #row2, #row3 {
@@ -84,3 +85,4 @@
      color: white;
      transform: translate(-50%,-50%);
      -ms-transform: translate(-50%,-50%);
+}
