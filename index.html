@@ -7,44 +7,48 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="style.css">
 		<title>Group Tic Tac Toe</title>
+	</head>
+<body>
 
-		<!-- external CSS link -->
+	
 		<div class="playerContainer">
-		<div>
-		<h2 id="playerOne" class="activePlayer player">Player X</h2>
-		<!-- <h3>Score: 0</h3> -->
-		</div>
-		<div>
-		<h2 id="playerTwo" class="player">Player O</h2>
-		<!-- <h3>Score: 0</h3> -->
-		</div>
+			<div>
+				<h2 id="playerOne" class="activePlayer player">Player X</h2>
+				<!-- <h3>Score: 0</h3> -->
+			</div>
+			<div>
+				<h2 id="playerTwo" class="player">Player O</h2>
+				<!-- <h3>Score: 0</h3> -->
+			</div>
 		</div>
 		<div class="buttons">
-		<input id="reset" type="button" value="Reset Game">
-		<!-- <input type="button" value="New Round"> -->
+			<input id="reset" type="button" value="Reset Game">
+			<!-- <input type="button" value="New Round"> -->
 		</div>
-		<div class="board" id="bored">
 		
 	
+		<div class="board" id="bored">
+			<div id="overlay"> <div id="text"></div></div>
+				<div id="row1">
+					<div class="boxes" id=0></div>
+					<div class="boxes" id=1></div>
+					<div class="boxes" id=2></div>
+				</div>
+				<div id="row2">
+					<div class="boxes" id=3></div>
+					<div class="boxes" id=4></div>
+					<div class="boxes" id=5></div>
+				</div>
+				<div id="row3">
+					<div class="boxes" id=6></div>
+					<div class="boxes" id=7></div>
+					<div class="boxes" id=8></div>
+				</div>
 
-		<div id="row1">
-			<div class="boxes" id=0></div>
-			<div class="boxes" id=1></div>
-			<div class="boxes" id=2></div>
 		</div>
-		<div id="row2">
-			<div class="boxes" id=3></div>
-			<div class="boxes" id=4></div>
-			<div class="boxes" id=5></div>
-		</div>
-		<div id="row3">
-			<div class="boxes" id=6></div>
-			<div class="boxes" id=7></div>
-			<div class="boxes" id=8></div>
-		</div>
-		<div>
-	</head>
-	<body>
+	
+	
+
 
 		<script type="text/javascript" src="script.js"></script>
 	</body>
