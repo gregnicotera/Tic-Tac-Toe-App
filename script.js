@@ -34,8 +34,6 @@ let gameObj = {
         [0, 4, 8],
         [2, 4, 6]
     ],
-
-    
     placeMark(addClass, id) { // Decides which player is active and behaves accordingly
         if(addClass.classList.contains('used')){ // lets user know they are trying to click in an already marked box
             alert('Block has already been chosen, please choose another')
@@ -48,8 +46,7 @@ let gameObj = {
             playerObj.activePlayerToggle()
             this.gameState()
         }
-    },
-    
+    },  
     gameState() {
         //checks if there is a winner after each player mark
         let roundWon = false;
@@ -64,7 +61,11 @@ let gameObj = {
          }
           if(a === b && b === c) {
                  roundWon = true;
+                 playerObj.activePlayerToggle() //OCD just keeping the winner as the active player
+                 let winArr = this.winningConditions[i]
+                 winArr.forEach((x,z) => document.getElementById(winArr[z]).style.background = "gold" ) // changes background of winning cells to red
                  console.log(`Player ${a} wins!`)
+                 board.removeEventListener('click', gameObj.gameBehavior)
                  stopTie++
                  break
          } 
@@ -73,21 +74,22 @@ let gameObj = {
     //resets the gamestate
     resetGame() {
         for(let i = 0; i < 9; i++) {
+            document.getElementById(i).style.background = "white" 
             document.getElementById(i).textContent = "" // removes marks from boxes
             document.getElementById(i).classList.remove('used') //removes used class so you can mark box again
             game[i] = "" // resets array used for CheckWin
-            turnCounter = 0 // resets turnCounters            
+            board.addEventListener('click', gameObj.gameBehavior)         
         }
         playerOne.contains('activePlayer') ? null : playerObj.activePlayerToggle() // makes PlayerX the active player
+    },
+    gameBehavior(e) {
+        if(e.target.classList.contains('boxes')) { //checks to make sure clicked target is a box and not empty space
+            let addClass = document.getElementById(`${e.target.id}`) // grabs id of the clicked box
+            gameObj.placeMark(addClass, e.target.id) // uses clicked box id to run function allowing player to mark
+            }    
     }
 }
 
 
-board.addEventListener('click', e => {
-    if(e.target.classList.contains('boxes')) { //checks to make sure clicked target is a box and not empty space
-    let addClass = document.getElementById(`${e.target.id}`) // grabs id of the clicked box
-    gameObj.placeMark(addClass, e.target.id) // uses clicked box id to run function allowing player to mark
-    }
-    
-})
+board.addEventListener('click', gameObj.gameBehavior)
 resetBtn.addEventListener("click", gameObj.resetGame)
