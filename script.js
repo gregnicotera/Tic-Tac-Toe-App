@@ -90,6 +90,7 @@ let gameObj = {
             document.getElementById(i).classList.remove('used') //removes used class so you can mark box again
             game[i] = "" // resets array used for CheckWin
             board.addEventListener('click', gameObj.gameBehavior) 
+            clickCount = 0
                  
         }
         playerOne.contains('activePlayer') ? null : playerObj.activePlayerToggle() // makes PlayerX the active player
