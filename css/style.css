@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: #5e6472;
+}
+
+#board {
+    width: 600px;
+    height: 350px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    color: black;
+    font-size: 12rem;
+    user-select: none;
+    text-shadow: 0 0 10px black, 0 0 10px black, 0 0 10px black, 0 0 10px black;
+}
+
+#board.inactive:hover {
+    cursor: default;
+}
+
+#board:hover,
+input {
+    cursor: pointer;
+}
+
+.used {
+    content: '';
+}
+
+.topRow,
+.middleRow,
+.bottomRow {
+    width: 33%;
+    height: 50%;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+}
+
+.topRow {
+    border-top: 1px solid white;
+}
+
+.leftCol {
+    border-left: 1px solid white;
+}
+
+.rightCol {
+    border-right: 1px solid white;
+}
+
+/* Active Player Styling */
+
+.activePlayer {
+    transition: border 250ms linear;
+}
+
+#playerOne.activePlayer {
+    border: solid aquamarine 2px;
+}
+
+#playerTwo.activePlayer {
+    border: solid slateblue 2px;
+}
+
+.playerContainer {
+    margin-top: 2.5%;
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
+}
+
+.playerContainer span {
+    font-size: 1.6em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 0;
+}
+
+.buttons input {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+    transition: all 250ms ease;
+    z-index: 999;
+}
+
+.buttons input:hover {
+    background: #222;
+}
+
+.buttons input:active {
+    background: #999;
+}
+
+.player,
+#reset {
+    padding: 1rem;
+}
+
+#overlay {
+    position: absolute; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 610px; /* Full width (cover the whole page) */
+    height: 550px; /* Full height (cover the whole page) */
+    margin: 177.5px auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: default; /* Add a pointer on hover */
+}
+
+#text {
+    position: absolute;
+    top: 50%;
+    width: 80%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black, 0 0 5px black;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
