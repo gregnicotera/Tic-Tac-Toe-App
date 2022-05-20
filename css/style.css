@@ -9,6 +9,11 @@ html {
     background-color: #5e6472;
 }
 
+li{
+    list-style-type: none;
+    display: inline-block;
+}
+
 #board {
     width: 600px;
     height: 350px;
@@ -109,7 +114,8 @@ input {
 }
 
 .player,
-#reset {
+#reset,
+#mute-btn {
     padding: 1rem;
 }
 

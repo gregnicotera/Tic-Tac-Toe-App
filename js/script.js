@@ -4,9 +4,13 @@ let board = document.getElementById('board');
 let playerOne = document.getElementById('playerOne').classList;
 let playerTwo = document.getElementById('playerTwo').classList;
 let resetBtn = document.getElementById('reset');
+let muteBtn = document.getElementById('mute-btn');
 let overLayText = document.getElementById('text');
 let game = new Array(9).fill('');
 let clickCount = 0;
+
+//music
+let metal = document.querySelector('audio')
 
 let playerObj = {
     activePlayerToggle() {
@@ -59,6 +63,7 @@ let gameObj = {
             playerObj.activePlayerToggle();
             this.gameState();
         }
+        metal.play();
     },
     gameState() {
         //checks if there is a winner after each player mark
@@ -93,7 +98,9 @@ let gameObj = {
             }
         }
         if (roundWon) {
+            
             board.removeEventListener('click', gameObj.gameBehavior);
+            
             return;
         }
 
@@ -113,6 +120,7 @@ let gameObj = {
     },
     //resets the gamestate
     resetGame() {
+        metal.pause();
         for (let i = 0; i < 9; i++) {
             document.getElementById('overlay').style.display = 'none';
             document.getElementById(i).innerText = '';
@@ -142,7 +150,22 @@ let gameObj = {
         // turns winning overlay on
         document.getElementById('overlay').style.display = 'block';
     },
+    togglePlay(){ //play toggle
+        if(metal.paused){
+            metal.play();
+        }else{
+            metal.pause();
+        }
+    },
+    muteMusic(){ //mute toggle
+        if(!metal.muted){
+            metal.muted = true;
+        }else{
+            metal.muted = false;
+        }
+    }
 };
 
 board.addEventListener('click', gameObj.gameBehavior);
 resetBtn.addEventListener('click', gameObj.resetGame);
+muteBtn.addEventListener('click', gameObj.muteMusic);
